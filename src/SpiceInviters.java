@@ -81,7 +81,7 @@ public class SpiceInviters extends JPanel implements ActionListener, KeyListener
         setFocusable(true);
         addKeyListener(this);
 
-        shipImg = new ImageIcon(Objects.requireNonNull(getClass().getResource("/assets/ship.png"))).getImage();
+        shipImg = new ImageIcon(Objects.requireNonNull(getClass().getResource("/assets/cinnam16.png"))).getImage();
         alienWhiteImg = new ImageIcon(Objects.requireNonNull(getClass().getResource("/assets/alien.png"))).getImage();
         alienCyanImg = new ImageIcon(Objects.requireNonNull(getClass().getResource("/assets/alien-cyan.png"))).getImage();
         alienMagentaImg = new ImageIcon(Objects.requireNonNull(getClass().getResource("/assets/alien-magenta.png"))).getImage();
@@ -132,7 +132,7 @@ public class SpiceInviters extends JPanel implements ActionListener, KeyListener
 
         //render score
         g.setColor(Color.white);
-        g.setFont(new Font("Menlo", Font.PLAIN, 32));
+        g.setFont(new Font("Menlo", Font.PLAIN, 20));
         if (gameOver) {
             g.drawString("Game Over! Final Score: " + String.valueOf(score), 10, 35);
         } else {
@@ -228,7 +228,7 @@ public class SpiceInviters extends JPanel implements ActionListener, KeyListener
         alienCount = alienArray.size();
     }
 
-    public boolean detectHit(Block a, Block b) {
+    private boolean detectHit(Block a, Block b) {
         return a.x < b.x + b.width && //top left of a doesn't reach top right of b
                 a.x + a.width > b.x && //top right of a passes top left of b
                 a.y < b.y + b.height && //top left of a doesn't reach bottom left of b
