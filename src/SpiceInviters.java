@@ -40,6 +40,7 @@ public class SpiceInviters extends JPanel implements ActionListener, KeyListener
     Image alienCyanImg;
     Image alienMagentaImg;
     Image alienYellowImg;
+    Image explosionImg;
 
     ArrayList<Image> alienImgArray;
 
@@ -85,6 +86,7 @@ public class SpiceInviters extends JPanel implements ActionListener, KeyListener
         alienCyanImg = new ImageIcon(Objects.requireNonNull(getClass().getResource("/assets/alien-cyan.png"))).getImage();
         alienMagentaImg = new ImageIcon(Objects.requireNonNull(getClass().getResource("/assets/alien-magenta.png"))).getImage();
         alienYellowImg = new ImageIcon(Objects.requireNonNull(getClass().getResource("/assets/alien-yellow.png"))).getImage();
+        explosionImg = new ImageIcon(Objects.requireNonNull(getClass().getResource("/assets/explosion.png"))).getImage();
 
         alienImgArray = new ArrayList<Image>();
         alienImgArray.add(alienWhiteImg);
@@ -130,7 +132,7 @@ public class SpiceInviters extends JPanel implements ActionListener, KeyListener
 
         //render score
         g.setColor(Color.white);
-        g.setFont(new Font("Arial", Font.PLAIN, 32));
+        g.setFont(new Font("Menlo", Font.PLAIN, 32));
         if (gameOver) {
             g.drawString("Game Over! Final Score: " + String.valueOf(score), 10, 35);
         } else {
@@ -168,11 +170,23 @@ public class SpiceInviters extends JPanel implements ActionListener, KeyListener
 
             //bullet collision
             for (Block alien : alienArray) {
-                if (!bullet.used && alien.alive && detectHit(bullet, alien)) {
+                if (!bullet.used && alien.alive && isAlienImageInArray(alien.img) && detectHit(bullet, alien)) {
+                    alien.img = explosionImg;
                     bullet.used = true;
-                    alien.alive = false;
+                    //alien.alive = false;
                     alienCount--;
                     score += 100;
+
+                    new java.util.Timer().schedule(
+                            new java.util.TimerTask() {
+                                @Override
+                                public void run() {
+                                    alien.alive = false; // Set alive to false after 500ms
+                                    // You may also reset the image or handle cleanup here if needed
+                                }
+                            },
+                            200 // Delay in milliseconds (500 ms = 0.5 seconds)
+                    );
                 }
             }
         }
@@ -219,6 +233,15 @@ public class SpiceInviters extends JPanel implements ActionListener, KeyListener
                 a.x + a.width > b.x && //top right of a passes top left of b
                 a.y < b.y + b.height && //top left of a doesn't reach bottom left of b
                 a.y + a.height > b.y; //bottom left of a passes top left of b
+    }
+
+    private boolean isAlienImageInArray(Image img) {
+        for (Image alienImage : alienImgArray) {
+            if (alienImage.equals(img)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

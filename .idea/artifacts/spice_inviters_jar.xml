@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="spice-inviters:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/spice_inviters_jar</output-path>
+    <root id="archive" name="spice-inviters.jar">
+      <element id="module-output" name="spice-inviters" />
+    </root>
+  </artifact>
+</component>
