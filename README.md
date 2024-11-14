@@ -2,7 +2,9 @@
 
 This is a Space Invaders clone mostly made following the wonderful guide by Kenny Yip.
 
-Please be sure to checkout their [website here](https://www.kennyyipcoding.com/).
+Please be sure to check out their [website here](https://www.kennyyipcoding.com/).
+
+Some creative liberty has been taken with the sprites.
 
 ## Instructions
 Clone the project into a directory of your choosing.
