@@ -202,7 +202,7 @@ public class SpiceInviters extends JPanel implements ActionListener, KeyListener
             score += alienColumn * alienRow * 100;
             //increase column and rows of aliens
             alienColumn = Math.min(alienColumn + 1, columns / 2 - 2); //caps columns at 6
-            alienRow = Math.min(alienRow + 1, rows - 6); //caps rows at 10
+            alienRow = Math.min(alienRow + 1, rows - 3); //caps rows at 13
             alienArray.clear(); //cleans alien array
             bulletArray.clear(); //cleans bullet array
             alienVelocity = 1;
